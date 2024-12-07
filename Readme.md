@@ -3,7 +3,7 @@ NATUDISE e-commerce
 
 **This project developed by Doğa ÖMRÜUZUN and İrem Sena ALPAK.** 
 
-**This GitHub project has been archived.** Ongoing development on this project can be found in <https://github.com/aspnet/AspNetCore>.
+**Web Design and Programming CENG 361** 
 
 **Note: For ASP.NET MVC 5.x, Web API 2.x, and Web Pages 3.x (not ASP.NET Core), see https://github.com/aspnet/AspNetWebStack**
 
