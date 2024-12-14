@@ -26,6 +26,8 @@
             <img src="images/admin-icon.png" alt="Admin Icon" style="width: 33px; height: 33px;">
         </a>
         
+        <a href="logout.php" class="btn btn-danger" style="float: right; margin-bottom: 20px;">Logout</a>
+
     </nav>
 </header>
 <section class="home" id="home">
@@ -203,7 +205,7 @@
 <section class="contact" id="contact">
     <h1 class="heading"><span> CONTACT </span> US </h1>
     <div class="row">
-        <form action="">
+    <form action="submit_contact.php" method="POST">
             <input type="text" class="box" placeholder="Name">
             <input type="email" class="box" placeholder="Email">
             <input type="number" class="box" placeholder="Number">

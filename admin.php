@@ -183,7 +183,42 @@ $result = $conn->query($query);
     <button type="submit">Add Product</button>
 </form>
 
+<h2>Contact Messages</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Message</th>
+                    <th>Received At</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $query = "SELECT * FROM messages ORDER BY created_at DESC";
+                $messages_result = $conn->query($query);
 
+                if ($messages_result->num_rows > 0):
+                    while ($row = $messages_result->fetch_assoc()): ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($row['id']); ?></td>
+                            <td><?php echo htmlspecialchars($row['name']); ?></td>
+                            <td><?php echo htmlspecialchars($row['email']); ?></td>
+                            <td><?php echo htmlspecialchars($row['number']); ?></td>
+                            <td><?php echo htmlspecialchars($row['message']); ?></td>
+                            <td><?php echo htmlspecialchars($row['created_at']); ?></td>
+                        </tr>
+                    <?php endwhile; 
+                else: ?>
+                    <tr>
+                        <td colspan="6" style="text-align: center;">No messages found.</td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+        
     <script>
         function confirmDelete(id) {
             if (confirm('Are you sure you want to delete this product?')) {

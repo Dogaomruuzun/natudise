@@ -1,28 +1,121 @@
-NATUDISE e-commerce
+# NATUDISE e-commerce
 ===========================
 
-**This project developed by Doğa ÖMRÜUZUN and İrem Sena ALPAK.** 
+**This project developed by Doğa ÖMRÜUZUN and İrem Sena ALPAK.**
 
-**Web Design and Programming CENG 361** 
+**Web Design and Programming CENG 361**
 
-**Note: For ASP.NET MVC 5.x, Web API 2.x, and Web Pages 3.x (not ASP.NET Core), see https://github.com/aspnet/AspNetWebStack**
+---
 
-ASP.NET Core MVC gives you a powerful, patterns-based way to build dynamic websites that enables a clean separation of concerns and gives you full control over markup for enjoyable, agile development. ASP.NET Core MVC includes many features that enable fast, TDD-friendly development for creating sophisticated applications that use the latest web standards.
+## Features
 
-ASP.NET Core MVC includes support for building web pages and HTTP services in a single aligned framework that can be hosted in IIS or self-hosted in your own process.
+### User Features:
+1. **Product Browsing:**
+   - Explore categories like Keychains, Wristbands, Necklaces, Hats, Scarves, Bags, and Clothes.
+   - View all available products with detailed descriptions, prices, and discount offers.
 
-See the [ASP.NET Core MVC documentation](https://docs.microsoft.com/aspnet/core/).
+2. **Shopping Cart:**
+   - Add products to your cart and view total prices.
+   - Remove items or proceed to checkout.
 
-Related community projects:
-* [AspNet.Mvc.TypedRouting](https://github.com/ivaylokenov/AspNet.Mvc.TypedRouting): A collection of extension methods providing strongly typed routing and link generation for ASP.NET Core MVC projects.
-* [ASP.NET MVC Boilerplate](https://visualstudiogallery.msdn.microsoft.com/6cf50a48-fc1e-4eaf-9e82-0b2a6705ca7d): Rich templates for ASP.NET Core MVC.
-* [MyTested.AspNetCore.Mvc](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc): Powerful fluent testing framework for ASP.NET Core MVC.
-* [MvcDeviceDetector](https://github.com/laskoviymishka/MvcDeviceDetector): Device detection mechanism to create mobile web applications.
-* [XmlResult](https://github.com/Wallsmedia/XmlResult): XML formatter extensions to allow defining the XML serializer type.
-* [AspNetCoreImageTagHelper](https://github.com/ignatandrei/AspNetCoreImageTagHelper): Tag helper for rendering images as inline base64 data.
+3. **Order Management:**
+   - Place orders and track order history via the `My Orders` page.
+   - View details like order ID, product name, quantity, price, and status.
 
-This project is part of ASP.NET Core. You can find samples, documentation and getting started instructions for ASP.NET Core at the [AspNetCore](https://github.com/aspnet/AspNetCore) repo.
+4. **Secure Payments:**
+   - Pay securely through integrated payment methods like PayPal.
 
-## Building from source
-¨
-To run a complete build on command line only, execute `build.cmd` or `build.sh` without arguments. See [developer documentation](https://github.com/aspnet/AspNetCore/wiki) for more details.
+5. **Customer Reviews:**
+   - Read customer reviews from happy clients who appreciate the craftsmanship.
+
+6. **Contact Form:**
+   - Reach out to us for inquiries or support via the `Contact Us` section.
+
+### Admin Features:
+1. **Admin Dashboard:**
+   - Manage product inventory (add, edit, and delete products).
+   - Oversee customer orders and update their statuses.
+
+2. **User Management:**
+   - View and manage registered users.
+
+3. **Analytics:**
+   - Track website performance and product popularity.
+
+---
+
+## Technology Stack
+
+- **Frontend:**
+  - HTML5, CSS3
+  - JavaScript for interactivity
+
+- **Backend:**
+  - PHP for server-side logic
+
+- **Database:**
+  - MySQL for data storage (e.g., products, users, orders)
+
+---
+
+## Welcome to NATUDISE
+
+Welcome to **NATUDISE**, where creativity meets craftsmanship! Established two years ago, we are proud to offer a stunning selection of handcrafted treasures, each piece unique and made with love. Our talented artisans pour their heart and soul into every item, ensuring that you receive nothing but the best. Don't miss out on our exquisite products—shop now and discover the perfect addition to your collection before they sell out!
+
+---
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-repository/natudise.git
+   ```
+
+2. Navigate to the project directory:
+   ```bash
+   cd natudise
+   ```
+
+3. Set up the database:
+   - Import the provided `database.sql` file into your MySQL server.
+
+4. Configure the database connection:
+   - Update the `config.php` file with your database credentials:
+     ```php
+     <?php
+     $servername = "localhost";
+     $username = "your_username";
+     $password = "your_password";
+     $dbname = "natudise_db";
+     ?>
+     ```
+
+5. Launch the application:
+   - Run the project on a local server like XAMPP or WAMP.
+   - Access the website at `http://localhost/natudise`.
+
+---
+
+## Usage
+
+### For Users:
+- Register or log in to start shopping.
+- Browse products, add to your cart, and place orders.
+- Track your orders through the `My Orders` page.
+
+### For Admins:
+- Log in to the admin panel via `admin.php`.
+- Add, update, or delete products and manage customer orders.
+
+---
+
+## Key Pages
+
+1. **Home Page (`home.php`):**
+   - Introduction to NATUDISE and its offerings.
+2. **Products Page (`products.php`):**
+   - Explore all available handmade products.
+3. **Cart Page (`cart.php`):**
+   - View selected items and proceed to checkout.
+4. **Admin Dashboard (`admin_dashboard.php`):**
+   - Comprehensive admin panel for managing the website.

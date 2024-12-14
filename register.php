@@ -1,12 +1,52 @@
+<?php
+require 'config.php';
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = trim($_POST['name']); 
+    $email = trim($_POST['email']); 
+    $password = $_POST['password']; 
+
+    if (strlen($password) < 6) {
+        $_SESSION['error'] = "Password must be at least 6 characters long.";
+        header("Location: register.php");
+        exit;
+    }
+
+    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $_SESSION['error'] = "Email is already registered.";
+        header("Location: register.php");
+        exit;
+    }
+
+    $stmt = $conn->prepare("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, 'user')");
+    $stmt->bind_param("sss", $name, $email, $password);
+
+    if ($stmt->execute()) {
+        $_SESSION['success'] = "Registration successful. You can now login.";
+        header("Location: login.html"); 
+        exit;
+    } else {
+        $_SESSION['error'] = "An error occurred during registration. Please try again.";
+        header("Location: register.php");
+        exit;
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Register Page</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        body.login-page {
+        body.register-page {
             font-family: "Georgia", serif;
             background-color: #fef3e6;
             background-size: cover;
@@ -18,7 +58,7 @@
             margin: 0;
             padding: 0;
         }
-        .login-container {
+        .register-container {
             background: rgba(255, 255, 255, 0.9);
             padding: 30px 40px;
             border-radius: 10px;
@@ -27,13 +67,13 @@
             text-align: center;
             border: 1px solid #e0dcdc;
         }
-        .login-container h1 {
+        .register-container h1 {
             font-size: 28px;
             margin-bottom: 20px;
             color: #b85c38;
             font-family: "Cursive", serif;
         }
-        .login-container label {
+        .register-container label {
             font-size: 14px;
             margin-bottom: 5px;
             color: #555;
@@ -41,7 +81,7 @@
             text-align: left;
             margin-top: 10px;
         }
-        .login-container input {
+        .register-container input {
             padding: 12px;
             margin-top: 5px;
             margin-bottom: 20px;
@@ -53,12 +93,12 @@
             width: 100%;
             box-sizing: border-box;
         }
-        .login-container input:focus {
+        .register-container input:focus {
             border-color: #b85c38;
             outline: none;
             box-shadow: 0px 0px 5px rgba(184, 92, 56, 0.5);
         }
-        .login-container button {
+        .register-container button {
             padding: 12px;
             background-color: #b85c38;
             color: white;
@@ -68,40 +108,38 @@
             font-size: 16px;
             font-weight: bold;
         }
-        .login-container button:hover {
+        .register-container button:hover {
             background-color: #a24e2f;
             transform: translateY(-3px);
         }
-        .register-link {
+        .message {
             margin-top: 10px;
-        }
-        .register-link a {
-            color: #b85c38;
-            text-decoration: none;
+            color: red;
             font-size: 14px;
-            font-weight: bold;
-        }
-        .register-link a:hover {
-            text-decoration: underline;
         }
     </style>
 </head>
-<body class="login-page">
-    <div class="login-container">
-        <h1>Welcome to Natudise</h1>
-        <form action="process.php" method="POST">
+<body class="register-page">
+    <div class="register-container">
+        <h1>Create an Account</h1>
+        <form action="register.php" method="POST">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            
             <label for="email">E-mail:</label>
             <input type="email" id="email" name="email" placeholder="Enter your email" required>
             
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" placeholder="Enter your password" required>
             
-            <button type="submit">Login</button>
+            <button type="submit">Sign Up</button>
         </form>
-        <div class="register-link">
-            <p>Don't have an account? <a href="register.php">Register here</a></p>
-        </div>
+        <?php
+        if (isset($_SESSION['error'])) {
+            echo '<div class="message">' . $_SESSION['error'] . '</div>';
+            unset($_SESSION['error']);
+        }
+        ?>
     </div>
 </body>
 </html>
-
